@@ -1,4 +1,5 @@
 import data from "../data/properties.json";
+import SearchForm from "../components/SearchForm";
 
 export default function SearchPage(){
     const properties = data.properties;
@@ -6,6 +7,9 @@ export default function SearchPage(){
     return(
         <div style={{padding: 16}}>
             <h1>Estate Agent App</h1>
+
+            <SearchForm/>
+            
             <p>Properties loaded: {properties.length}</p>
 
             <ul>
