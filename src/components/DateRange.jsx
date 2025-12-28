@@ -19,7 +19,6 @@ export default function DateRange({
     border: "1px solid #999",
     borderRadius: "6px",
     fontSize: "14px",
-    
     color: "gray",
   };
 
