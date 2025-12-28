@@ -94,7 +94,7 @@ export default function SearchForm() {
         Postcode area:
         <input
           type="text"
-          name="postcode"c
+          name="postcode"
           value={criteria.postcode}
           onChange={handleChange}
           placeholder="e.g. BR5"
