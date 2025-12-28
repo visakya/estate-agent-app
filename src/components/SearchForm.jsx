@@ -1,105 +1,111 @@
 import { useState } from "react";
+import {
+  DropdownList,
+  NumberPicker,
+  Combobox
+} from "react-widgets";
+import BedroomRange from "./BedroomRange";
+import DateRange from "./DateRange";
 
-export default function SearchForm() {
+export default function SearchForm({postcodeOptions}) {
   const [criteria, setCriteria] = useState({
-    type: "",
-    minPrice: "",
-    maxPrice: "",
-    minBedrooms: "",
-    maxBedrooms: "",
-    dateAdded: "",
+    type: null,
+    minPrice: null,
+    maxPrice: null,
+    minBedrooms: null,
+    maxBedrooms: null,
+    dateFrom: null,
+    dateTo: null,
     postcode: ""
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setCriteria((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  }
-
   return (
-    <form style={{ marginBottom: 20 }}>
-      <h2>Search Properties</h2>
+    <form style={{ marginBottom: 24 }}
+      
+    >
+      <h2>Properties</h2>
 
-      <label>
-        Property type:
-        <select name="type" value={criteria.type} onChange={handleChange}>
-          <option value="">Any</option>
-          <option value="House">House</option>
-          <option value="Flat">Flat</option>
-        </select>
-      </label>
+      {/*Property type widget*/}
+      <label>Property type:</label>
+      <DropdownList
+        data = {["Any","House","Flat"]}
+        value = {criteria.type}
+        onChange = {(value) =>
+          setCriteria((prev) => ({
+            ...prev,
+            type: value === "Any" ? null: value
+          }))
 
-      <br /><br />
-
-      <label>
-        Min price:
-        <input
-          type="number"
-          name="minPrice"
-          value={criteria.minPrice}
-          onChange={handleChange}
-        />
-      </label>
-
-      <label>
-        Max price:
-        <input
-          type="number"
-          name="maxPrice"
-          value={criteria.maxPrice}
-          onChange={handleChange}
-        />
-      </label>
+        }
+      />
 
       <br /><br />
 
-      <label>
-        Min bedrooms:
-        <input
-          type="number"
-          name="minBedrooms"
-          value={criteria.minBedrooms}
-          onChange={handleChange}
-        />
-      </label>
-
-      <label>
-        Max bedrooms:
-        <input
-          type="number"
-          name="maxBedrooms"
-          value={criteria.maxBedrooms}
-          onChange={handleChange}
-        />
-      </label>
+      {/*Price widgets*/}
+      <label>Minimum price:</label>
+      <NumberPicker
+        min = {0}
+        step = {5000}
+        value = {criteria.minPrice}
+        onChange = {(value) => 
+          setCriteria((prev) => ({ ...prev, minPrice: value}))
+        }
+      />
 
       <br /><br />
 
-      <label>
-        Added after:
-        <input
-          type="date"
-          name="dateAdded"
-          value={criteria.dateAdded}
-          onChange={handleChange}
-        />
-      </label>
+      <label>Maximum price:</label>
+      <NumberPicker
+        min = {0}
+        step = {5000}
+        value = {criteria.maxPrice}
+        onChange = {(value) =>
+          setCriteria((prev) => ({ ...prev, maxPrice: value}))
+        }
+      />
 
       <br /><br />
 
-      <label>
-        Postcode area:
-        <input
-          type="text"
-          name="postcode"
-          value={criteria.postcode}
-          onChange={handleChange}
-          placeholder="e.g. BR5"
-        />
-      </label>
+      {/*Bedrooms widgets*/}
+      <BedroomRange
+        minBedrooms={criteria.minBedrooms}
+        maxBedrooms={criteria.maxBedrooms}
+        onMinBedroomsChange={(value) =>
+          setCriteria((prev) => ({ ...prev, minBedrooms: value }))
+        }
+        onMaxBedroomsChange={(value) =>
+          setCriteria((prev) => ({ ...prev, maxBedrooms: value }))
+        }
+      />
+
+      <br /><br />
+
+      {/*Date widgets*/}
+      <DateRange
+        dateFrom={criteria.dateFrom}
+        dateTo={criteria.dateTo}
+        onDateFromChange={(value) =>
+          setCriteria((prev) => ({ ...prev, dateFrom: value }))
+        }
+        onDateToChange={(value) =>
+          setCriteria((prev) => ({ ...prev, dateTo: value }))
+        }
+      />
+
+
+      <br /><br />
+
+      {/*Postcode widgets*/}
+      <label>Postcode area:</label>
+      <Combobox
+        data = {postcodeOptions}
+        value = {criteria.postcode}
+        onChange={(value) =>
+          setCriteria((prev) => ({ ...prev, postcode: value}))
+        }
+        placeholder="e.g. BR5"
+      />
+      
     </form>
   );
 }
