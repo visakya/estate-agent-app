@@ -20,91 +20,100 @@ export default function SearchForm({postcodeOptions}) {
   });
 
   return (
-    <form style={{ marginBottom: 24 }}
-      
-    >
+    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       <h2>Properties</h2>
 
       {/*Property type widget*/}
-      <label>Property type:</label>
-      <DropdownList
-        data = {["Any","House","Flat"]}
-        value = {criteria.type}
-        onChange = {(value) =>
-          setCriteria((prev) => ({
-            ...prev,
-            type: value === "Any" ? null: value
-          }))
+      <div>
+        <label className="form-label">Property type:</label>
+        <DropdownList
+          data = {["Any","House","Flat"]}
+          value = {criteria.type}
+          onChange = {(value) =>
+            setCriteria((prev) => ({
+              ...prev,
+              type: value === "Any" ? null: value
+            }))
 
-        }
-      />
-
+          }
+        />
+      </div>
       <br /><br />
 
       {/*Price widgets*/}
-      <label>Minimum price:</label>
-      <NumberPicker
-        min = {0}
-        step = {5000}
-        value = {criteria.minPrice}
-        onChange = {(value) => 
-          setCriteria((prev) => ({ ...prev, minPrice: value}))
-        }
-      />
+      <div>
+        <label className="form-label">Price range</label>
+        <div style={{display: "flex", gap:12}}>
+          <NumberPicker
+            min = {0}
+            step = {5000}
+            placeholder="Min price"
+            value = {criteria.minPrice}
+            onChange = {(value) => 
+              setCriteria((prev) => ({ ...prev, minPrice: value}))
+            }
+          />
 
-      <br /><br />
+          <br /><br />
 
-      <label>Maximum price:</label>
-      <NumberPicker
-        min = {0}
-        step = {5000}
-        value = {criteria.maxPrice}
-        onChange = {(value) =>
-          setCriteria((prev) => ({ ...prev, maxPrice: value}))
-        }
-      />
-
+          
+          <NumberPicker
+            min = {0}
+            step = {5000}
+            placeholder="Max price"
+            value = {criteria.maxPrice}
+            onChange = {(value) =>
+              setCriteria((prev) => ({ ...prev, maxPrice: value}))
+            }
+          />
+        </div>
+      </div>
       <br /><br />
 
       {/*Bedrooms widgets*/}
-      <BedroomRange
-        minBedrooms={criteria.minBedrooms}
-        maxBedrooms={criteria.maxBedrooms}
-        onMinBedroomsChange={(value) =>
-          setCriteria((prev) => ({ ...prev, minBedrooms: value }))
-        }
-        onMaxBedroomsChange={(value) =>
-          setCriteria((prev) => ({ ...prev, maxBedrooms: value }))
-        }
-      />
+      <div className="form-group">
+        <BedroomRange
+          minBedrooms={criteria.minBedrooms}
+          maxBedrooms={criteria.maxBedrooms}
+          onMinBedroomsChange={(value) =>
+            setCriteria((prev) => ({ ...prev, minBedrooms: value }))
+          }
+          onMaxBedroomsChange={(value) =>
+            setCriteria((prev) => ({ ...prev, maxBedrooms: value }))
+          }
+        />
+      </div>  
 
       <br /><br />
 
       {/*Date widgets*/}
-      <DateRange
-        dateFrom={criteria.dateFrom}
-        dateTo={criteria.dateTo}
-        onDateFromChange={(value) =>
-          setCriteria((prev) => ({ ...prev, dateFrom: value }))
-        }
-        onDateToChange={(value) =>
-          setCriteria((prev) => ({ ...prev, dateTo: value }))
-        }
-      />
-
+      <div className="form-group">
+        <DateRange
+          dateFrom={criteria.dateFrom}
+          dateTo={criteria.dateTo}
+          onDateFromChange={(value) =>
+            setCriteria((prev) => ({ ...prev, dateFrom: value }))
+          }
+          onDateToChange={(value) =>
+            setCriteria((prev) => ({ ...prev, dateTo: value }))
+          }
+        />
+      </div>
 
       <br /><br />
 
       {/*Postcode widgets*/}
-      <label>Postcode area:</label>
-      <Combobox
-        data = {postcodeOptions}
-        value = {criteria.postcode}
-        onChange={(value) =>
-          setCriteria((prev) => ({ ...prev, postcode: value}))
-        }
-        placeholder="e.g. BR5"
-      />
+      <div className="form-group">
+        <label className="form-label">Postcode area:</label>
+        <Combobox
+          data = {postcodeOptions}
+          value = {criteria.postcode}
+          onChange={(value) =>
+            setCriteria((prev) => ({ ...prev, postcode: value}))
+          }
+          placeholder="e.g. BR5"
+        />
+      </div>
       
     </form>
   );
