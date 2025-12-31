@@ -1,6 +1,7 @@
 import data from "../data/properties.json";
 import SearchForm from "../components/SearchForm";
 import {useMemo, useState} from "react";
+import PropertyCard from "../components/PropertyCard";
 
 function getPostcodeArea(location){
     const match = location?.match(/[A-Z]{1,2}\d{1,2}/);
@@ -66,23 +67,24 @@ export default function SearchPage(){
     return(
         <div style={{padding: 16}}>
             <h1>Estate Agent App</h1>
-
-            <SearchForm 
-                postcodeOptions={postcodeOptions}
-                criteria={criteria}
-                setCriteria={setCriteria} 
-            />
-            
+            <div style={{display:"flex", justifyContent: "center"}}>
+                <SearchForm 
+                    postcodeOptions={postcodeOptions}
+                    criteria={criteria}
+                    setCriteria={setCriteria} 
+                />
+            </div>
             <p>Showing {filteredProperties.length} of {properties.length} properties </p>
-
-            <ul>
-                {filteredProperties.map((p) => (
-                    <li key={p.id}>
-                        {p.type} - £{p.price} - {p.bedrooms} beds - {getPostcodeArea(p.location)} -{" "}
-                        {p.dateAdded}
-                    </li>
-                ))} 
-            </ul>
+            {filteredProperties.length === 0 ? (
+                <p>No properties match your search criteria.</p>
+                ) : (
+                <div className="results-grid">
+                    {filteredProperties.map((p) => (
+                    <PropertyCard key={p.id} property={p} />
+                    ))}
+                </div>
+                )
+            }
             
         </div>
     );
