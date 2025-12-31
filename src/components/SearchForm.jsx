@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import {
   DropdownList,
   NumberPicker,
@@ -7,18 +7,8 @@ import {
 import BedroomRange from "./BedroomRange";
 import DateRange from "./DateRange";
 
-export default function SearchForm({postcodeOptions}) {
-  const [criteria, setCriteria] = useState({
-    type: null,
-    minPrice: null,
-    maxPrice: null,
-    minBedrooms: null,
-    maxBedrooms: null,
-    dateFrom: null,
-    dateTo: null,
-    postcode: ""
-  });
-
+export default function SearchForm({postcodeOptions,criteria,setCriteria}) {
+ 
   return (
     <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       <h2>Properties</h2>
