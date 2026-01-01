@@ -7,7 +7,7 @@ import {
 import BedroomRange from "./BedroomRange";
 import DateRange from "./DateRange";
 
-export default function SearchForm({postcodeOptions,criteria,setCriteria}) {
+export default function SearchForm({postcodeOptions,criteria,setCriteria,onClearFilters}) {
  
   return (
     <form className="search-form" onSubmit={(e) => e.preventDefault()}>
@@ -103,6 +103,12 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria}) {
           }
           placeholder="e.g. BR5"
         />
+      </div>
+
+      <div className="form-group" style={{textAlign:"center"}}>
+        <button type="button" onClick={onClearFilters}>
+          Clear Filters
+        </button>
       </div>
       
     </form>
