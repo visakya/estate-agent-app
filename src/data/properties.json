@@ -8,8 +8,9 @@
 			"tenure":"Freehold",
 			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
 			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
-			"picture":"images/prop1pic1small.jpg",
-            "dateAdded": "2022-10-12"   
+			"picture":"/images/prop1/house1-1.jpg",
+            "dateAdded": "2022-10-12",   
+			"floorPlan":""
         },
 
 		{
@@ -18,9 +19,9 @@
             "bedrooms":2,
 			"price":399995,
 			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
+			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.This apartment being only five years old, is still under a 10 year building guarantee...",
+			"location":"Crofton Road, Orpington BR6",
+			"picture":"/images/prop2/flat2-1.jpg",
             "dateAdded": "2022-09-14"
         },
 
@@ -28,11 +29,11 @@
             "id":"3",
 			"type":"House",
             "bedrooms":4,
-			"price":950000,
+			"price":800000,
 			"tenure":"Freehold",
-			"description":"Spacious four bedroom detached house offering modern family living with alrge rear garden, driveway parking and garage. <br>The property features a bright open-plan kitchen, two reception rooms and aground floor WC. Located close to highly rated schools and transport links.",
+			"description":"Spacious four bedroom detached house offering modern family living with alrge rear garden, driveway parking and garage.The property features a bright open-plan kitchen, two reception rooms and aground floor WC. Located close to highly rated schools and transport links.",
 			"location":"High Stree, Chislehurst BR2",
-			"picture":"images/prop2pic1small.jpg",
+			"picture":"/images/prop3/house3-2.jpg",
             "dateAdded": "2023-06-17"
         },
 
@@ -44,19 +45,19 @@
 			"tenure": "Freehold",
 			"description": "Impressive five bedroom period property offering generous living accommodation over three floors. Features include original fireplaces, high ceilings, a landscaped garden and off-street parking. Situated within walking distance of local amenities.",
 			"location": "Manor Way, Beckenham BR8",
-			"picture": "images/prop5pic1small.jpg",
+			"picture": "/images/prop4/house4.jpg",
 			"dateAdded": "2024-08-21"
 		},
 
 		{
-			 "id": "5",
+			"id": "5",
 			"type": "Flat",
 			"bedrooms": 1,
 			"price": 275000,
 			"tenure": "Leasehold",
 			"description": "Well-presented one bedroom apartment located on the second floor of a modern development. The property benefits from an open-plan living area, fitted kitchen and a private balcony. Ideal for first-time buyers or investors.",
 			"location": "Station Road, Bromley BR3",
-			"picture": "images/prop4pic1small.jpg",
+			"picture": "/images/prop5/flat5.jpg",
 			"dateAdded": "2025-05-26"
 		},
 
@@ -66,9 +67,9 @@
 			"bedrooms": 3,
 			"price":600000,
 			"tenure": "Leasehold",
-			"desription":"Modern three bedroom apartment set within a gated development with concierge service. <br>The property offers a spacious living area, integrated kitchen appliances and secure underground parking. Excellent transport connections nearby.",
+			"description":"Modern three bedroom apartment set within a gated developemt with concierge service. The property offers a spacious living area, integrated kitchen appliances and secure underground parking. Excellent transport connections nearby.",
 			"location":"Greenwich High Road, London NW1",
-			"picture":"images/prp6pic1small.jpg",
+			"picture":"/images/prop6/flat6.jpg",
 			"dateAdded":"2025-10-10"
 		},
 
@@ -76,11 +77,11 @@
 			"id": "7",
 			"type": "House",
 			"bedrooms": 2,
-			"price": 505000,
+			"price": 5050000,
 			"tenure": "Freehold",
 			"description": "Charming two bedroom terraced house ideal for couples or small families. The property benefits from a modern kitchen, open-plan living space and a low-maintenance garden. Located in a quiet residential road.",
 			"location": "Oak Road, Orpington NW4",
-			"picture": "images/prop7pic1small.jpg",
+			"picture": "/images/prop7/house7.jpg",
 			"dateAdded": "2025-12-20"
 		}
 
