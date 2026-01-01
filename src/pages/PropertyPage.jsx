@@ -1,6 +1,7 @@
 import {Link, useParams} from "react-router-dom";
 import data from "../data/properties.json";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
+import "./PropertyPage.css";
 
 export default function PropertyPage(){
     const {id} = useParams();
