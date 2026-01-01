@@ -18,7 +18,7 @@ export default function PropertyPage(){
 
     return (
         < div style = {{padding: 16}}>
-            <Link to="/"> Back to search</Link>
+            <Link to="/" className="backLink"> Back to search</Link>
 
             <h1 style = {{marginTop: 12}}>
                 {property.type} - £{property.price.toLocaleString()}

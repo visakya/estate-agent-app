@@ -44,3 +44,21 @@
     background-color: #ffffff;
     border-radius: 0 6px 6px 6px;
 }
+
+/*Back to search link*/
+.backLink{
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.backLink:hover{
+    background-color: #e0e0ff;
+    transform: translateX(-2px);
+}
