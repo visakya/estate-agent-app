@@ -1,5 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import data from "../data/properties.json";
+import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
 
 export default function PropertyPage(){
     const {id} = useParams();
@@ -34,8 +35,25 @@ export default function PropertyPage(){
                 <strong>Date added: </strong> {property.dateAdded}
             </p>
 
-            <h3>Description</h3>
-            <p>{property.description}</p>
+            <Tabs>
+                <TabList>
+                    <Tab>Description</Tab>
+                    <Tab>Floor Plan</Tab>
+                    <Tab>Map</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <p>{property.description}</p>
+                </TabPanel>
+
+                <TabPanel>
+                    <p>Floor plan image</p>
+                </TabPanel>
+
+                <TabPanel>
+                    <p>Map location</p>
+                </TabPanel>
+            </Tabs>
         </div>
     )
 }
