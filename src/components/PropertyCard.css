@@ -28,3 +28,7 @@
   color: #555;
 }
 
+.property-card-link{
+    color: inherit;
+    display: block;
+}
