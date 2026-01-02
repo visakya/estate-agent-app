@@ -161,7 +161,25 @@ export default function PropertyPage(){
                 </TabPanel>
 
                 <TabPanel>
-                    <p>Map location</p>
+                    <h3>Map</h3>
+                    <p>{property.location}</p>
+
+                    {(() => {const hasCoords = typeof property.lat === "number" && typeof property.lng === "number";
+
+                    const mapSrc = hasCoords ?`https://www.google.com/maps?output=embed&z=16&11=${property.lat},${property.lng}`
+                                            : `https://www.google.com/maps?output=embed&q=${encodeURIComponent(property.location)}`;
+                    return(
+                        <div className="map-wrap">
+                            <iframe 
+                                title={`Map of ${property.location}`}
+                                className="map-iframe"
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                src={mapSrc}
+                            />
+                        </div>
+                    );
+                })()}
                 </TabPanel>
             </Tabs>
 
