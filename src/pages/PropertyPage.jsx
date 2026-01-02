@@ -2,6 +2,7 @@ import {Link, useParams} from "react-router-dom";
 import data from "../data/properties.json";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
 import "./PropertyPage.css";
+import { useEffect,useState,useRef } from "react";
 
 export default function PropertyPage(){
     const {id} = useParams();
@@ -15,6 +16,97 @@ export default function PropertyPage(){
             </div>
         );
     }
+
+    const base = import.meta.env.BASE_URL;
+
+    const gallery = property.images && property.images.length > 0 ? property.images.map((p) => `${base}${p.replace(/^\//, "")}`) : [];
+
+    const [selectedImage, setSelectedImage] = useState(gallery[0] || "");
+
+    const [viewerOpen, setViewerOpen] = useState(false);
+
+    const thumbRefs = useRef([]);
+
+    function openViewer(img) {
+        setSelectedImage(img);
+        setViewerOpen(true);
+    }
+
+    function closeViewer() {
+        setViewerOpen(false);
+    }
+
+    function nextImage() {
+        const i = gallery.indexOf(selectedImage);
+        setSelectedImage(gallery[(i + 1) % gallery.length]);
+    }
+
+    function prevImage() {
+        const i = gallery.indexOf(selectedImage);
+        setSelectedImage(gallery[(i - 1 + gallery.length) % gallery.length]);
+    }
+
+    useEffect(() => {
+
+        function handleKeyDown(e){
+            if (viewerOpen) {
+                if (e.key === "Escape") {
+                    closeViewer();
+                    return;
+                }
+                if (e.key === "ArrowRight") {
+                    nextImage();
+                    return;
+                }
+                if (e.key === "ArrowLeft") {
+                    prevImage();
+                    return;
+                }
+                if (e.key === "Home") {
+                    setSelectedImage(gallery[0]);
+                    return;
+                }
+                if (e.key === "End") {
+                    setSelectedImage(gallery[gallery.length - 1]);
+                    return;
+                }
+                return;
+                }
+
+            const activeIndex = thumbRefs.current.findIndex(
+            (btn) => btn === document.activeElement
+            );
+
+            if (activeIndex === -1) return;
+
+            if (e.key === "ArrowRight") {
+            const next = (activeIndex + 1) % gallery.length;
+            thumbRefs.current[next]?.focus();     
+            setSelectedImage(gallery[next]);
+            e.preventDefault();
+            }
+
+            if (e.key === "ArrowLeft") {
+            const prev = (activeIndex - 1 + gallery.length) % gallery.length;
+            thumbRefs.current[prev]?.focus();    
+            setSelectedImage(gallery[prev]);
+            e.preventDefault();
+            }
+
+            if (e.key === "Enter" || e.key === " ") {
+            document.activeElement.click();
+            e.preventDefault();
+            }
+    
+        }
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return() => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    },[viewerOpen, gallery, selectedImage]
+);
 
     return (
         < div style = {{padding: 16}}>
@@ -36,6 +128,23 @@ export default function PropertyPage(){
                 <strong>Date added: </strong> {property.dateAdded}
             </p>
 
+            {gallery.length > 0 && (
+                <div className="gallery">
+                    <img className="gallery-main" src={selectedImage} alt="Property" onClick={() => openViewer(selectedImage)} style={{cursor: "pointer"}}/>
+
+                    <div className="gallery-images">
+                        {gallery.map((img, index) => (
+                            <button key={index} type="button" ref={(el) => (thumbRefs.current[index] = el)} className={img === selectedImage ? "gallery-btn active": "gallery-btn"} onClick={() => setSelectedImage(img)}>
+                                <img className="gallery-img" src={img} alt={`Property ${index + 1}`}/>
+                            </button>
+                        ))}
+                    </div>
+                    <button type="button" className="view-all-btn" onClick={() => openViewer(gallery[0])}>
+                        View all images
+                    </button>
+                </div>
+            )}
+
             <Tabs>
                 <TabList>
                     <Tab>Description</Tab>
@@ -55,6 +164,33 @@ export default function PropertyPage(){
                     <p>Map location</p>
                 </TabPanel>
             </Tabs>
+
+            {viewerOpen && (
+                <div className="viewer-overlay" onClick={closeViewer}>
+                    <div className="viewer-modal" onClick={(e) => e.stopPropagation()}>
+                        <button type="button" className="viewer-close" onClick={closeViewer}>
+                            X
+                        </button>
+
+                        <p className="viewer-count">{gallery.indexOf(selectedImage)+1} / {gallery.length}</p>
+
+                        <div className="viewer-main">
+                            <button type="button" className="viewer-nav" onClick={prevImage}>
+                            ‹
+                            </button>
+
+                            <img className="viewer-image" src={selectedImage} alt="Full view" />
+
+                            <button type="button" className="viewer-nav" onClick={nextImage}>
+                            ›
+                            </button>
+                        </div>
+                       
+                    </div>
+
+                </div>
+            )}
         </div>
+        
     )
 }
