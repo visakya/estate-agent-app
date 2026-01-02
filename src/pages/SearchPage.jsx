@@ -43,6 +43,15 @@ export default function SearchPage(){
         setSortBy("None");
     }
 
+    const [favourites, setFavourites] = useState([]);
+
+    function addToFavourites(property){
+        setFavourites((prev) => {
+            if(prev.some((p) => p.id === property.id)) return prev;
+            return [...prev, property];
+        });
+    }
+
     const postcodeOptions = Array.from(
         new Set(
             properties
@@ -137,7 +146,7 @@ export default function SearchPage(){
                 ) : (
                 <div className="results-grid">
                     {sortedProperties.map((p) => (
-                    <PropertyCard key={p.id} property={p} />
+                    <PropertyCard key={p.id} property={p} onAddFavourite = {addToFavourites} isFavourite = {favourites.some((f) => f.id === p.id)} />
                     ))}
                 </div>
                 )

@@ -1,7 +1,7 @@
 import "./PropertyCard.css";
 import {Link} from "react-router-dom";
 
-export default function PropertyCard({ property }) {
+export default function PropertyCard({ property, onAddFavourite, isFavourite }) {
     const postcodeAreaMatch = property.location?.match(/[A-Z]{1,2}\d{1,2}/);
     const postcodeArea = postcodeAreaMatch ? postcodeAreaMatch[0] : "";
 
@@ -37,6 +37,10 @@ export default function PropertyCard({ property }) {
                 </p>
 
                 <p>{property.description}</p>
+
+                <button type="button" className="fav-btn" disabled={isFavourite} onClick = {(e) => {e.preventDefault(); e.stopPropagation(); onAddFavourite(property);}}>
+                    {isFavourite ? "\u2764\uFE0F Favourite": "\u2661 Favourite" }
+                </button>
 
                 <Link to={`/property/${property.id}`} className="details-link">
                     View details 
