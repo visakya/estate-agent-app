@@ -23,6 +23,10 @@ export default function PropertyCard({ property, onAddFavourite, isFavourite }) 
                     </h3>
                 </Link>
 
+                <button type="button" className="fav-btn" disabled={isFavourite} onClick = {(e) => {e.preventDefault(); e.stopPropagation(); onAddFavourite(property);}}>
+                    {isFavourite ? "\u2764\uFE0F Favourite": "\u2661 Favourite" }
+                </button>
+
                 <p className="meta">
                     <strong>Bedrooms:</strong> {property.bedrooms} ·{" "}
                     <strong>Postcode:</strong> {postcodeArea || "N/A"}
@@ -37,10 +41,6 @@ export default function PropertyCard({ property, onAddFavourite, isFavourite }) 
                 </p>
 
                 <p>{property.description}</p>
-
-                <button type="button" className="fav-btn" disabled={isFavourite} onClick = {(e) => {e.preventDefault(); e.stopPropagation(); onAddFavourite(property);}}>
-                    {isFavourite ? "\u2764\uFE0F Favourite": "\u2661 Favourite" }
-                </button>
 
                 <Link to={`/property/${property.id}`} className="details-link">
                     View details 

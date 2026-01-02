@@ -1,6 +1,6 @@
 import data from "../data/properties.json";
 import SearchForm from "../components/SearchForm";
-import {useMemo, useState} from "react";
+import {useMemo, useState, useEffect} from "react";
 import PropertyCard from "../components/PropertyCard";
 import {DropdownList} from "react-widgets";
 import {Link} from "react-router-dom";
@@ -44,7 +44,15 @@ export default function SearchPage(){
         setSortBy("None");
     }
 
-    const [favourites, setFavourites] = useState([]);
+    const [favourites, setFavourites] = useState(() => {
+        const saved = localStorage.getItem("favourites");
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("favourites", JSON.stringify(favourites));
+    },
+    [favourites])
 
     function addToFavourites(property){
         setFavourites((prev) => {
