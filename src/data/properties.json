@@ -22,7 +22,7 @@
 				"/images/prop1/bathroom1-1.jpg",
 				"/images/prop1/utilityRoom1-1.jpg"
 			], 
-			"floorPlan":""
+			"floorPlan":"/images/FloorPlan/floorplan1.jpeg"
         },
 
 		{
@@ -47,7 +47,9 @@
 				"/images/prop2/gardenFlat2.jpg",
 				"/images/prop2/bathroom2-1.jpg",
 				"/images/prop2/bathroom2-2.jpg"
-			]
+			],
+			"floorPlan":"/images/FloorPlan/floorplan2.jpeg"
+        	
         },
 
 		{
@@ -73,7 +75,8 @@
 				"/images/prop3/livingRoom3.jpg",
 				"/images/prop3/bathroom3-1.jpg",
 				"/images/prop3/bathroom3-2.jpg"
-			]
+			],
+			"floorPlan":""
         },
 
 		{
@@ -100,7 +103,8 @@
 				"/images/prop4/bathroom4-1.jpg",
 				"/images/prop4/bathroom4-2.jpg",
 				"/images/prop4/fireplace4.jpg"
-			]
+			],
+			"floorPlan":""
 		},
 
 		{
@@ -123,7 +127,8 @@
 				"/images/prop5/kitchen5-1.jpg",
 				"/images/prop5/kitchen5-2.jpg",
 				"/images/prop5/flatBalcony5.jpg"
-			]
+			],
+			"floorPlan":"/images/FloorPlan/floorplan5.png"
 		},
 
 		{
@@ -147,7 +152,8 @@
 				"/images/prop6/livingRoom6.jpg",
 				"/images/prop6/bathroom6.jpg",
 				"/images/prop5/undergroundParking6.jpg"
-			]
+			],
+			"floorPlan":"/images/FloorPlan/floorplan6.png"
 		},
 
 		{
@@ -169,7 +175,8 @@
 				"/images/prop7/bathroom7.jpg",
 				"/images/prop7/kitchen7.jpg",
 				"/images/prop7/livingRoom7.jpg"
-			]
+			],
+			"floorPlan":"/images/FloorPlan/floorplan7.png"
 		}
 
     ]

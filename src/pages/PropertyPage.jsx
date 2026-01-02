@@ -157,7 +157,16 @@ export default function PropertyPage(){
                 </TabPanel>
 
                 <TabPanel>
-                    <p>Floor plan image</p>
+                    <h3>Floor Plan</h3>
+                    {property.floorPlan ? (
+                        <div className="floorplan-wrap">
+                            <img className="floorplan-img" src={`${import.meta.env.BASE_URL}${property.floorPlan.replace(/^\//,"")}`} alt={`Floor plan for ${property.type} in ${property.location}`}
+                            />
+                        </div>
+                    ):(
+                        <p>No floor plan available for this property yet.</p>
+                    )
+                }
                 </TabPanel>
 
                 <TabPanel>
