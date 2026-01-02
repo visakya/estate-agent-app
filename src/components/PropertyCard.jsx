@@ -12,8 +12,8 @@ export default function PropertyCard({ property, onAddFavourite, isFavourite }) 
     const pictureSrc = `${base}${picturePath}`;
 
     return (
-            <div className="property-card">
-                <Link to ={`/property/${property.id}`} className="property-card-link">
+            <div className="property-card" draggable onDragStart={(e) => {e.dataTransfer.setData("propertyId", String(property.id));}}>
+                <Link to ={`/property/${property.id}`} className="property-card-link" draggable={false}>
                     <img className="property-thumb" src={pictureSrc} alt={`${property.type} thumbnail`} loading="lazy" />           
                     <h3>
                         {property.type} —{" "}

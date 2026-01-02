@@ -27,6 +27,79 @@
   }
 }
 
+/*favourites*/
+.favourite-panel {
+  max-width: 700px;
+  margin: 0 auto 16px auto;
+  padding: 12px;
+  border: 2px dashed #888;
+  border-radius: 8px;
+}
+
+.favourite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favourite-item {
+  display: flex;
+  align-items: center;
+  gap:12px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.favourite-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.favourites-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.favourite-thumb {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.favourite-title {
+  font-weight: 600;
+}
+
+.favourite-meta {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.fav-drag-out {
+  margin-top: 12px;
+  margin-bottom: 15px;
+  padding: 16px;
+  border: 2px dashed #c33;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.fav-drag-out:hover {
+  background: rgba(200, 0, 0, 0.1);
+  opacity: 1;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;

@@ -3,6 +3,7 @@ import SearchForm from "../components/SearchForm";
 import {useMemo, useState} from "react";
 import PropertyCard from "../components/PropertyCard";
 import {DropdownList} from "react-widgets";
+import {Link} from "react-router-dom";
 
 function getPostcodeArea(location){
     const match = location?.match(/[A-Z]{1,2}\d{1,2}/);
@@ -50,6 +51,14 @@ export default function SearchPage(){
             if(prev.some((p) => p.id === property.id)) return prev;
             return [...prev, property];
         });
+    }
+
+    function removeFavourite(id){
+        setFavourites((prev) => prev.filter((p) => p.id !== id));
+    }
+
+    function clearFavourites(){
+        setFavourites([]);
     }
 
     const postcodeOptions = Array.from(
@@ -138,6 +147,55 @@ export default function SearchPage(){
                     value={sortBy}
                     onChange={(value) => setSortBy(value)}
                 />
+            </div>
+
+            <h3>Favourites</h3>
+
+            <div className="favourite-panel" onDragOver={(e) => e.preventDefault()} onDrop={(e) => {
+                e.preventDefault();
+                const id = e.dataTransfer.getData("propertyId");
+                const prop = properties.find((p) => String(p.id) === String(id));
+                if(prop) addToFavourites(prop);
+            }}>
+                {favourites.length === 0 ? (
+                <p>Drag a property here to add.</p>
+                ):(
+                    <ul className="favourite-list">
+                        {favourites.map((p) => (
+                            <li key={p.id} className="favourite-item" draggable onDragStart={(e) => {e.dataTransfer.setData("favId",p.id);}}>
+                                <Link to = {`/property/${p.id}`} className="favourites-link">
+                                    <img className="favourite-thumb" src={`${import.meta.env.BASE_URL}${p.picture.replace(/^\//, "")}`} alt={`${p.type} thumbnail`} loading="lazy"/>
+                                    <div className="favourite-text">
+                                        <div className="favourite-title">{p.type}</div>
+                                        <div className="favourite-meta">
+                                            £{p.price.toLocaleString()} - {p.bedrooms} beds
+                                        </div>
+                                    </div>
+                                </Link>
+
+                                <button type="button" className="fav-remove" onClick={() => removeFavourite(p.id)}>
+                                    Remove
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                <div className="fav-drag-out" onDragOver={(e) => e.preventDefault()} onDrop={(e) => {e.preventDefault();
+
+                    const favId = e.dataTransfer.getData("favId");
+                    if(favId) removeFavourite(favId);
+                    }}>
+                        Drag a favourite item here to remove
+                </div>
+
+                <div className="favourite-header">
+                    {favourites.length > 0 && (
+                        <button type="button" className="fav-clear" onClick={clearFavourites}>
+                            Clear all
+                        </button>
+                    )}
+                </div>
             </div>
 
             <p>Showing {sortedProperties.length} of {properties.length} properties </p>
