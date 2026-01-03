@@ -4,6 +4,7 @@ import {useMemo, useState, useEffect} from "react";
 import PropertyCard from "../components/PropertyCard";
 import {DropdownList} from "react-widgets";
 import {Link} from "react-router-dom";
+import filterProperties from "../logic/filterProperties";
 
 function getPostcodeArea(location){
     const match = location?.match(/[A-Z]{1,2}\d{1,2}/);
@@ -45,14 +46,18 @@ export default function SearchPage(){
     }
 
     const [favourites, setFavourites] = useState(() => {
-        const saved = localStorage.getItem("favourites");
-        return saved ? JSON.parse(saved) : [];
+        try{
+            const saved = localStorage.getItem("favourites");
+            return saved ? JSON.parse(saved) : [];
+        } catch{
+            return [];
+        }
     });
 
     useEffect(() => {
         localStorage.setItem("favourites", JSON.stringify(favourites));
     },
-    [favourites])
+    [favourites]);
 
     function addToFavourites(property){
         setFavourites((prev) => {
@@ -78,33 +83,8 @@ export default function SearchPage(){
     );
 
     const filteredProperties = useMemo(() => {
-        return properties.filter((p) => {
-
-            //property type
-            if(criteria.type && p.type !== criteria.type) return false;
-
-            //price
-            if(criteria.minPrice != null && p.price < criteria.minPrice) return false;
-            if(criteria.maxPrice != null && p.price > criteria.maxPrice) return false;
-
-            //bedrooms
-            if(criteria.minBedrooms != null && p.bedrooms < criteria.minBedrooms) return false;
-            if(criteria.maxBedrooms != null && p.bedrooms > criteria.maxBedrooms) return false;
-
-            //date added
-            const propDate = toDate(p.dateAdded);
-            if(criteria.dateFrom && propDate && propDate < criteria.dateFrom) return false;
-            if(criteria.dateTo && propDate && propDate > criteria.dateTo) return false;
-
-            //postcode
-            const area = getPostcodeArea(p.location);
-            if(criteria.postcode && area !== criteria.postcode) return false;
-
-            return true;
-        });
-
-        },[properties, criteria]
-    );
+        return filterProperties(properties, criteria);
+    }, [properties, criteria]);
 
     const sortedProperties = useMemo(() => {
         const array1 = [...filteredProperties];
