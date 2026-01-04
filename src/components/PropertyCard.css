@@ -68,26 +68,7 @@
   cursor: default;
 }
 
-.favourite-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.fav-remove {
-  margin-left: auto;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.fav-remove:hover {
-  background: #343497;
-}
-
-
+/*responsive*/
 @media(max-width: 480px) {
     .property-thumb{
         height: 140px;
