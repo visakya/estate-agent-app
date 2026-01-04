@@ -10,6 +10,10 @@ export function toDate(value) {
 }
 
 export default function filterProperties(properties, criteria){
+
+    const dateFrom = criteria.dateFrom ? toDate(criteria.dateFrom) : null;
+    const dateTo = criteria.dateTo ? toDate(criteria.dateTo) : null;
+    
     return properties.filter((p) => {
 
         if(criteria.type && p.type !== criteria.type) return false;
@@ -20,7 +24,7 @@ export default function filterProperties(properties, criteria){
         if(criteria.minBedrooms != null && p.bedrooms < criteria.minBedrooms) return false;
         if(criteria.maxBedrooms != null && p.bedrooms > criteria.maxBedrooms) return false;
 
-        const propDate = toDate(p.dateAddedd);
+        const propDate = toDate(p.dateAdded);
 
         if(criteria.dateFrom && propDate && propDate < criteria.dateFrom) return false;
         if(criteria.dateTo && propDate && propDate > criteria.dateTo) return false;
