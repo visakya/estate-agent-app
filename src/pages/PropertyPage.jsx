@@ -196,7 +196,7 @@ export default function PropertyPage(){
                 <div className="viewer-overlay" onClick={closeViewer}>
                     <div className="viewer-modal" onClick={(e) => e.stopPropagation()}>
                         <button type="button" className="viewer-close" onClick={closeViewer}>
-                            X
+                            &times;
                         </button>
 
                         <p className="viewer-count">{gallery.indexOf(selectedImage)+1} / {gallery.length}</p>

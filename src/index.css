@@ -24,8 +24,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+
   min-width: 320px;
   min-height: 100vh;
 }
@@ -56,22 +55,39 @@ button:focus-visible {
 
 /*Search form layout*/
 .search-form {
+  width: 100%;
   max-width: 700px;
-  margin-bottom: 0 auto 32px auto;
+  margin: 0 auto 32px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
+
 .search-form h2{
   text-align: center;
+  font-size: 26px;
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
+.price-row{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+price-row > *{
+  flex: 1;
+  min-width: 220px;
+}
+
 .form-label {
   display: block;
   font-weight: 600;
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 /* Inputs consistency */
@@ -118,14 +134,19 @@ input[type="date"] {
 
 
 /* tablets: 2 columns */
-@media (min-width: 700px) {
+@media (min-width: 700px) and (max-width: 1023px) {
   .results-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* desktops: 3 columns */
-@media (min-width: 1000px) {
+@media (min-width: 1024px) {
+
+  .search-form h2{ 
+    font-size: 30px;
+  }
+
   .results-grid {
     grid-template-columns: repeat(3, 1fr);
   }

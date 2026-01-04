@@ -28,12 +28,11 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria,onClear
           }
         />
       </div>
-      <br /><br />
 
       {/*Price widgets*/}
       <div>
-        <label className="form-label">Price range</label>
-        <div style={{display: "flex", gap:12}}>
+        <label className="form-label">Price range: </label>
+        <div className="price-row">
           <NumberPicker
             min = {0}
             step = {5000}
@@ -44,9 +43,6 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria,onClear
             }
           />
 
-          <br /><br />
-
-          
           <NumberPicker
             min = {0}
             step = {5000}
@@ -58,8 +54,8 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria,onClear
           />
         </div>
       </div>
-      <br /><br />
-
+      
+      <br/><br/>
       {/*Bedrooms widgets*/}
       <div className="form-group">
         <BedroomRange
@@ -74,8 +70,6 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria,onClear
         />
       </div>  
 
-      <br /><br />
-
       {/*Date widgets*/}
       <div className="form-group">
         <DateRange
@@ -89,8 +83,6 @@ export default function SearchForm({postcodeOptions,criteria,setCriteria,onClear
           }
         />
       </div>
-
-      <br /><br />
 
       {/*Postcode widgets*/}
       <div className="form-group">

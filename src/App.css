@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 24px 16px;
   text-align: center;
 }
 
@@ -28,6 +28,12 @@
 }
 
 /*favourites*/
+
+.fav-top{
+  font-size: 24px;
+  text-align: center;
+  margin-top: 50px;
+}
 .favourite-panel {
   max-width: 700px;
   margin: 0 auto 16px auto;
@@ -82,6 +88,27 @@
   opacity: 0.85;
 }
 
+
+.favourite-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/*Remove button beside each favourite item*/
+.fav-remove {
+  margin-left: auto;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.fav-remove:hover {
+  background: #343497;
+}
+
 .fav-drag-out {
   margin-top: 12px;
   margin-bottom: 15px;
@@ -99,6 +126,9 @@
   opacity: 1;
 }
 
+.search-form{
+  text-align: left;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
@@ -112,4 +142,14 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@media (max-width: 768px){
+  .price-row{
+    flex-direction: column;
+}
+
+.price-row >*{
+  min-width: 100%;
+}
 }

@@ -123,7 +123,7 @@ export default function SearchPage(){
             </div>
 
             <div className="form-group" style={{ maxWidth: 700, margin: "0 auto 16px auto" }}>
-                <label className="form-label">Sort by</label>
+                <label className="form-label" style={{textAlign:"center"}}>Sort by</label>
                 <DropdownList
                     data={[
                     "None",
@@ -137,7 +137,7 @@ export default function SearchPage(){
                 />
             </div>
 
-            <h3>Favourites</h3>
+            <h3 className="fav-top">Favourites</h3>
 
             <div className="favourite-panel" onDragOver={(e) => e.preventDefault()} onDrop={(e) => {
                 e.preventDefault();
@@ -186,17 +186,19 @@ export default function SearchPage(){
                 </div>
             </div>
 
-            <p>Showing {sortedProperties.length} of {properties.length} properties </p>
-            {sortedProperties.length === 0 ? (
-                <p>No properties match your search criteria.</p>
-                ) : (
-                <div className="results-grid">
-                    {sortedProperties.map((p) => (
-                    <PropertyCard key={p.id} property={p} onAddFavourite = {addToFavourites} isFavourite = {favourites.some((f) => f.id === p.id)} />
-                    ))}
-                </div>
-                )
-            }
+            <div style={{ marginTop:25}}>
+                <p style={{textAlign: "center"}}>Showing {sortedProperties.length} of {properties.length} properties </p>
+                {sortedProperties.length === 0 ? (
+                    <p>No properties match your search criteria.</p>
+                    ) : (
+                    <div className="results-grid">
+                        {sortedProperties.map((p) => (
+                        <PropertyCard key={p.id} property={p} onAddFavourite = {addToFavourites} isFavourite = {favourites.some((f) => f.id === p.id)} />
+                        ))}
+                    </div>
+                    )
+                }
+            </div>
             
         </div>
     );

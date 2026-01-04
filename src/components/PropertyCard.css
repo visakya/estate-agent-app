@@ -5,6 +5,9 @@
   margin-bottom: 50px;
   background-color: #ffffff;
   color: #111;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
   
 }
 
@@ -31,6 +34,7 @@
 .property-card-link{
     color: inherit;
     display: block;
+    text-decoration: none;
 }
 
 .property-thumb {
@@ -42,6 +46,13 @@
   border: 1px solid #ddd;
   background: #f5f5f5;
 }
+
+.property-card:hover{
+    border-color: #b9c4ff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
 
 /*Favourite property card*/
 .fav-btn {
@@ -55,4 +66,30 @@
 .fav-btn:disabled {
   opacity: 0.7;
   cursor: default;
+}
+
+.favourite-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fav-remove {
+  margin-left: auto;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.fav-remove:hover {
+  background: #343497;
+}
+
+
+@media(max-width: 480px) {
+    .property-thumb{
+        height: 140px;
+    }
 }
