@@ -27,6 +27,7 @@ export default function PropertyPage(){
 
     const thumbRefs = useRef([]);
 
+    //Image viewer functions
     function openViewer(img) {
         setSelectedImage(img);
         setViewerOpen(true);
@@ -46,6 +47,7 @@ export default function PropertyPage(){
         setSelectedImage(gallery[(i - 1 + gallery.length) % gallery.length]);
     }
 
+    //Handle keyboard controls for accessibility
     useEffect(() => {
 
         function handleKeyDown(e){
@@ -128,6 +130,7 @@ export default function PropertyPage(){
                 <strong>Date added: </strong> {property.dateAdded}
             </p>
 
+            //Render main image gallery
             {gallery.length > 0 && (
                 <div className="gallery">
                     <img className="gallery-main" src={selectedImage} alt="Property" onClick={() => openViewer(selectedImage)} style={{cursor: "pointer"}}/>
@@ -145,6 +148,7 @@ export default function PropertyPage(){
                 </div>
             )}
 
+            //Tabbed content layout for property information
             <Tabs>
                 <TabList>
                     <Tab>Description</Tab>
@@ -172,7 +176,8 @@ export default function PropertyPage(){
                 <TabPanel>
                     <h3>Map</h3>
                     <p>{property.location}</p>
-
+                    
+                    //Google maps embed
                     {(() => {const hasCoords = typeof property.lat === "number" && typeof property.lng === "number";
 
                     const mapSrc = hasCoords ?`https://www.google.com/maps?output=embed&z=16&11=${property.lat},${property.lng}`
@@ -192,6 +197,7 @@ export default function PropertyPage(){
                 </TabPanel>
             </Tabs>
 
+            //Full screen image viewer overlay
             {viewerOpen && (
                 <div className="viewer-overlay" onClick={closeViewer}>
                     <div className="viewer-modal" onClick={(e) => e.stopPropagation()}>
