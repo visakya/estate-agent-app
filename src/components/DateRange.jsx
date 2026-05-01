@@ -20,12 +20,13 @@ export default function DateRange({
     borderRadius: "6px",
     fontSize: "14px",
     color: "gray",
+    backgroundColor: "var(--bg-main)",
   };
 
   return (
     <div style={{ marginBottom: 16 }}>
-      <div style={{ fontWeight: 400, marginBottom: 8, color: "white" }}>
-        Date added: 
+      <div style={{ fontWeight: 400, marginBottom: 8, color: "var(--text-main)" }}>
+        Date added:
       </div>
 
       <div style={{ display: "flex", gap: 12, alignItems: "center" }}>

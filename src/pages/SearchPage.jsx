@@ -122,8 +122,8 @@ export default function SearchPage(){
                 />
             </div>
 
-            <div className="form-group" style={{ maxWidth: 700, margin: "0 auto 16px auto" }}>
-                <label className="form-label" style={{textAlign:"center"}}>Sort by</label>
+            <div className="sort-section">
+                <label className="form-label">Sort By</label>
                 <DropdownList
                     data={[
                     "None",
@@ -146,7 +146,10 @@ export default function SearchPage(){
                 if(prop) addToFavourites(prop);
             }}>
                 {favourites.length === 0 ? (
-                <p>Drag a property here to add.</p>
+                <div className="fav-empty">
+                    <div className="fav-empty-icon">📂</div>
+                    <p>Your favourites list is empty. Drag a property here to save it for later.</p>
+                </div>
                 ):(
                     <ul className="favourite-list">
                         {favourites.map((p) => (

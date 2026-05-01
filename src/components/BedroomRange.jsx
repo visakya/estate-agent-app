@@ -15,12 +15,13 @@ export default function BedroomRange({
     borderRadius: "6px",
     fontSize: "14px",
     backgroundColor: "#fff",
+    backgroundColor: "var(--bg-main)",
     color: "#000",
   };
 
   return (
     <div style={{ marginBottom: 16 }}>
-      <div style={{ fontWeight: 400, marginBottom: 8, color: "white" }}>
+      <div style={{ fontWeight: 400, marginBottom: 8, color: "var(--text-main)" }}>
         Bedrooms:
       </div>
 
@@ -56,7 +57,7 @@ export default function BedroomRange({
         />
       </div>
 
-    
+
     </div>
   );
 }

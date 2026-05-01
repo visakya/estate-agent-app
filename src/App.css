@@ -1,155 +1,156 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
+/* Logo Styling */
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 5rem;
+  padding: 1rem;
   will-change: filter;
-  transition: filter 300ms;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 0 1rem rgba(79, 70, 229, 0.2));
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2.5rem rgba(79, 70, 229, 0.6));
+  transform: scale(1.05);
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-/*favourites*/
-
-.fav-top{
-  font-size: 24px;
+/* Favourites Panel Modernization */
+.fav-top {
+  font-size: 1.75rem;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
 }
+
 .favourite-panel {
-  max-width: 700px;
-  margin: 0 auto 16px auto;
-  padding: 12px;
-  border: 2px dashed #888;
-  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  padding: 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
 }
 
 .favourite-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .favourite-item {
   display: flex;
   align-items: center;
-  gap:12px;
-  padding: 8px;
-  border-radius: 6px;
+  gap: 1.25rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  transition: all 0.2s ease;
 }
 
 .favourite-item:hover {
   background: rgba(255, 255, 255, 0.06);
+  border-color: var(--glass-border);
+  transform: translateX(4px);
 }
 
 .favourites-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px;
-  border-radius: 8px;
+  gap: 1rem;
   text-decoration: none;
   color: inherit;
   flex: 1;
 }
 
 .favourite-thumb {
-  width: 72px;
-  height: 54px;
+  width: 80px;
+  height: 60px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 10px;
   flex-shrink: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .favourite-title {
-  font-weight: 200;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-main);
 }
 
 .favourite-meta {
-  font-size: 0.9rem;
-  opacity: 0.85;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
-
-.favourite-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-/*Remove button beside each favourite item*/
 .fav-remove {
-  margin-left: auto;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .fav-remove:hover {
-  background: #343497;
+  background: #ef4444;
+  color: white;
 }
 
+/* Drag Out Zone */
 .fav-drag-out {
-  margin-top: 12px;
-  margin-bottom: 15px;
-  padding: 16px;
-  border: 2px dashed #c33;
-  border-radius: 10px;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 2px dashed rgba(239, 68, 68, 0.3);
+  border-radius: 16px;
   text-align: center;
-  font-size: 15px;
-  cursor: pointer;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.02);
+  transition: all 0.3s ease;
 }
 
 .fav-drag-out:hover {
-  background: rgba(200, 0, 0, 0.1);
-  opacity: 1;
+  background: rgba(239, 68, 68, 0.08);
+  border-color: #ef4444;
 }
 
-.search-form{
-  text-align: left;
+.fav-clear {
+  margin-top: 1rem;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  #root {
+    padding: 2rem 1rem;
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-@media (max-width: 768px){
-  .price-row{
-    flex-direction: column;
-}
-
-.price-row >*{
-  min-width: 100%;
-}
+  .favourite-item {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
 }

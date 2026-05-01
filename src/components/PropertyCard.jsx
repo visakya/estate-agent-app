@@ -43,7 +43,7 @@ export default function PropertyCard({ property, onAddFavourite, isFavourite }) 
                 <p>{property.description}</p>
 
                 <Link to={`/property/${property.id}`} className="details-link">
-                    View details 
+                    View Details
                 </Link>
             </div>
 
