@@ -56,8 +56,7 @@ export default function SearchPage(){
 
     useEffect(() => {
         localStorage.setItem("favourites", JSON.stringify(favourites));
-    },
-    [favourites]);
+    }, [favourites]);
 
     function addToFavourites(property){
         setFavourites((prev) => {
@@ -108,101 +107,123 @@ export default function SearchPage(){
         });
 
         return array1;
-        },[filteredProperties, sortBy]
-    );
+    }, [filteredProperties, sortBy]);
+
     return(
-        <div style={{padding: 16}}>
-            <h1>Estate Agent App</h1>
-            <div style={{display:"flex", justifyContent: "center"}}>
-                <SearchForm 
-                    postcodeOptions={postcodeOptions}
-                    criteria={criteria}
-                    setCriteria={setCriteria} 
-                    onClearFilters={clearFilters}
-                />
+        <div>
+            {/* ── Page Title ── */}
+            <div className="site-title-area">
+                <h1 className="site-title">Estate Agent App</h1>
             </div>
 
-            <div className="sort-section">
-                <label className="form-label">Sort By</label>
-                <DropdownList
-                    data={[
-                    "None",
-                    "Price: Low to High",
-                    "Price: High to Low",
-                    "Date: Newest first",
-                    "Date: Oldest first",
-                    ]}
-                    value={sortBy}
-                    onChange={(value) => setSortBy(value)}
-                />
-            </div>
+            <div className="page-layout">
 
-            <h3 className="fav-top">Favourites</h3>
+            {/* ── Main Content Column ── */}
+            <div className="main-column">
 
-            <div className="favourite-panel" onDragOver={(e) => e.preventDefault()} onDrop={(e) => {
-                e.preventDefault();
-                const id = e.dataTransfer.getData("propertyId");
-                const prop = properties.find((p) => String(p.id) === String(id));
-                if(prop) addToFavourites(prop);
-            }}>
-                {favourites.length === 0 ? (
-                <div className="fav-empty">
-                    <div className="fav-empty-icon">📂</div>
-                    <p>Your favourites list is empty. Drag a property here to save it for later.</p>
+                <div style={{display:"flex", justifyContent: "center"}}>
+
+                    <SearchForm 
+                        postcodeOptions={postcodeOptions}
+                        criteria={criteria}
+                        setCriteria={setCriteria} 
+                        onClearFilters={clearFilters}
+                    />
                 </div>
+
+                <div className="sort-section">
+                    <label className="form-label">Sort By</label>
+                    <DropdownList
+                        data={[
+                        "None",
+                        "Price: Low to High",
+                        "Price: High to Low",
+                        "Date: Newest first",
+                        "Date: Oldest first",
+                        ]}
+                        value={sortBy}
+                        onChange={(value) => setSortBy(value)}
+                    />
+                </div>
+
+                <div style={{ marginTop:25}}>
+                    <p style={{textAlign: "center"}}>Showing {sortedProperties.length} of {properties.length} properties </p>
+                    {sortedProperties.length === 0 ? (
+                        <p>No properties match your search criteria.</p>
+                        ) : (
+                        <div className="results-grid">
+                            {sortedProperties.map((p) => (
+                            <PropertyCard key={p.id} property={p} onAddFavourite={addToFavourites} isFavourite={favourites.some((f) => f.id === p.id)} />
+                            ))}
+                        </div>
+                        )
+                    }
+                </div>
+            </div>
+
+            {/* ── Sticky Sidebar ── */}
+            <aside
+                className="fav-sidebar"
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                    e.preventDefault();
+                    const id = e.dataTransfer.getData("propertyId");
+                    const prop = properties.find((p) => String(p.id) === String(id));
+                    if(prop) addToFavourites(prop);
+                }}
+            >
+                <div className="fav-sidebar-header">
+                    <span className="fav-sidebar-title">♡ Favourites</span>
+                    {favourites.length > 0 && (
+                        <span className="fav-sidebar-badge">{favourites.length}</span>
+                    )}
+                </div>
+
+                {favourites.length === 0 ? (
+                    <div className="fav-empty">
+                        <div className="fav-empty-icon">📂</div>
+                        <p>Drag a property here to save it.</p>
+                    </div>
                 ):(
                     <ul className="favourite-list">
                         {favourites.map((p) => (
-                            <li key={p.id} className="favourite-item" draggable onDragStart={(e) => {e.dataTransfer.setData("favId",p.id);}}>
-                                <Link to = {`/property/${p.id}`} className="favourites-link">
+                            <li key={p.id} className="favourite-item" draggable onDragStart={(e) => {e.dataTransfer.setData("favId", p.id);}}>
+                                <Link to={`/property/${p.id}`} className="favourites-link">
                                     <img className="favourite-thumb" src={`${import.meta.env.BASE_URL}${p.picture.replace(/^\//, "")}`} alt={`${p.type} thumbnail`} loading="lazy"/>
                                     <div className="favourite-text">
                                         <div className="favourite-title">{p.type}</div>
                                         <div className="favourite-meta">
-                                            £{p.price.toLocaleString()} - {p.bedrooms} beds
+                                            £{p.price.toLocaleString()} · {p.bedrooms} beds
                                         </div>
                                     </div>
                                 </Link>
-
                                 <button type="button" className="fav-remove" onClick={() => removeFavourite(p.id)}>
-                                    Remove
+                                    ✕
                                 </button>
                             </li>
                         ))}
                     </ul>
                 )}
 
-                <div className="fav-drag-out" onDragOver={(e) => e.preventDefault()} onDrop={(e) => {e.preventDefault();
-
-                    const favId = e.dataTransfer.getData("favId");
-                    if(favId) removeFavourite(favId);
-                    }}>
-                        Drag a favourite item here to remove
+                <div
+                    className="fav-drag-out"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => {
+                        e.preventDefault();
+                        const favId = e.dataTransfer.getData("favId");
+                        if(favId) removeFavourite(favId);
+                    }}
+                >
+                    🗑 Drag here to remove
                 </div>
 
-                <div className="favourite-header">
-                    {favourites.length > 0 && (
-                        <button type="button" className="fav-clear" onClick={clearFavourites}>
-                            Clear all
-                        </button>
-                    )}
-                </div>
-            </div>
-
-            <div style={{ marginTop:25}}>
-                <p style={{textAlign: "center"}}>Showing {sortedProperties.length} of {properties.length} properties </p>
-                {sortedProperties.length === 0 ? (
-                    <p>No properties match your search criteria.</p>
-                    ) : (
-                    <div className="results-grid">
-                        {sortedProperties.map((p) => (
-                        <PropertyCard key={p.id} property={p} onAddFavourite = {addToFavourites} isFavourite = {favourites.some((f) => f.id === p.id)} />
-                        ))}
-                    </div>
-                    )
-                }
-            </div>
-            
+                {favourites.length > 0 && (
+                    <button type="button" className="fav-clear" onClick={clearFavourites}>
+                        Clear all
+                    </button>
+                )}
+            </aside>
+            </div>{/* end page-layout */}
         </div>
     );
 }

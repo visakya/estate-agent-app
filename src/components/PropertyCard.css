@@ -115,13 +115,13 @@
   color: white;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .property-thumb {
-    height: 180px;
+    height: 160px;
   }
-}
 
-.property-thumb {
-  height: 180px;
-}
-}
+  .property-card {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+}
