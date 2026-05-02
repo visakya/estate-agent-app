@@ -200,3 +200,23 @@ button[onClick="onClearFilters"]:hover,
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* h1 too big on mobile */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* search form padding too large */
+  .search-form {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+}
+
+/* price row overflow on very small screens */
+@media (max-width: 480px) {
+  .price-row {
+    flex-direction: column;
+  }
+}
