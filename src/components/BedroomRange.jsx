@@ -14,7 +14,6 @@ export default function BedroomRange({
     border: "1px solid #999",
     borderRadius: "6px",
     fontSize: "14px",
-    backgroundColor: "#fff",
     backgroundColor: "var(--bg-main)",
     color: "#000",
   };
